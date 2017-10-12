@@ -5,13 +5,13 @@ Django liqpay integration app.
 ### Installation
 
 Install with pip:
-```sh
+```
 $ pip install django-liqpay
 ```
 
 App settings:
 ```
-REQUIRED:
+# REQUIRED:
 
 # Public_key - the identifier of the created company. For example: i00000000
 LIQPAY_PUBLIC_KEY = '*********'
@@ -20,7 +20,7 @@ LIQPAY_PUBLIC_KEY = '*********'
 # For example: a4825234f4bae72a0be04eafe9e8e2bada209255
 LIQPAY_PRIVATE_KEY = '***********************************'
 
-OPTIONAL:
+# OPTIONAL:
 
 # Payment currency. Example value: USD, EUR, RUB, UAH, BYN, KZT. 
 # Additional currencies can be added by company's request.
@@ -49,6 +49,19 @@ checkout_form = liqpay.get_checkout_form(
     language='en'
 )
 ```
+
+get_checkout_form method params:
+* public_key: str, required
+* amount: float, required
+* description: str, required
+* order_id: str, required
+* result_url: url, str, required
+* server_url: url, str, required
+
+version: integer, optional, default - 3
+action: str, optional, default - 'pay'
+currency: str, optional, default - 'UAH'
+language: str, optional, default - 'uk'
 
 template.html
 ```
