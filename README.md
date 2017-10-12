@@ -1,51 +1,67 @@
-# MP-Accounts
+# MP-LiqPay
 
-Django accounts app.
+Django liqpay integration app.
 
 ### Installation
 
 Install with pip:
-
 ```sh
-$ pip install -e git://github.com/pmaigutyak/mp-accounts.git#egg=mp-accounts
+$ pip install django-liqpay
 ```
 
-Add accounts to urls.py:
-
+App settings:
 ```
-urlpatterns += i18n_patterns(
-    
-    url(r'^accounts/', include('allauth.urls')),
+REQUIRED:
 
-    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
-    
+# Public_key - the identifier of the created company. For example: i00000000
+LIQPAY_PUBLIC_KEY = '*********'
+
+# Private key of the created company (not available to anyone except your developer). 
+# For example: a4825234f4bae72a0be04eafe9e8e2bada209255
+LIQPAY_PRIVATE_KEY = '***********************************'
+
+OPTIONAL:
+
+# Payment currency. Example value: USD, EUR, RUB, UAH, BYN, KZT. 
+# Additional currencies can be added by company's request.
+# Default: UAH
+LIQPAY_DEFAULT_CURRENCY = '***'
+
+# Language code
+# Default: uk
+LIQPAY_DEFAULT_LANGUAGE = '**'
+
+# Transaction type. Possible values: pay - payment, hold - amount of hold on sender's account, 
+# subscribe - regular payment, paydonate - donation, auth - card preauth
+# Default: pay
+LIQPAY_DEFAULT_ACTION = '***'
+```
+
+## Usage example
+views.py
+```
+checkout_form = liqpay.get_checkout_form(
+    amount=12.4,
+    order_id=1,
+    description=_('Provision of services'),
+    result_url='http://example.com',
+    server_url='http://example.com',
+    language='en'
 )
 ```
 
-Add accounts to settings.py:
+template.html
 ```
-INSTALLED_APPS = [
-    'accounts',
-    'allauth',
-    'allauth.account',
-]
-
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
-LOGIN_REDIRECT_URL = '/'
-```
-
-Run migrations:
-```
-$ python manage.py migrate
+<form action="{{ checkout_form.action }}" method="{{ checkout_form.method }}" target="_blank">
+    {{ checkout_form }}
+    <button type="submit" class="btn btn-success pull-left">
+        <i class="fa fa-credit-card"></i>
+        {% trans 'Pay' %}
+    </button>
+</form>
 ```
 
 ### Requirements
 
 App require this packages:
-
-* django-allauth
-* django-widget-tweaks
+* django
