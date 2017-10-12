@@ -58,10 +58,10 @@ get_checkout_form method params:
 * result_url: url, str, required
 * server_url: url, str, required
 
-version: integer, optional, default - 3
-action: str, optional, default - 'pay'
-currency: str, optional, default - 'UAH'
-language: str, optional, default - 'uk'
+* version: integer, optional, default - 3
+* action: str, optional, default - 'pay'
+* currency: str, optional, default - 'UAH'
+* language: str, optional, default - 'uk'
 
 template.html
 ```
