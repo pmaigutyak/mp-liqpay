@@ -10,9 +10,6 @@ from liqpay.forms import ApiForm, CheckoutForm
 from liqpay.exceptions import LiqPayValidationError
 
 
-__version__ = '1.0'
-
-
 def to_unicode(s):
     """
     :param s:

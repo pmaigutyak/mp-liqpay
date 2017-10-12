@@ -1,7 +1,8 @@
 
 from setuptools import setup, find_packages
 
-from liqpay import __version__
+
+__version__ = '1.0'
 
 
 with open('requirements.txt') as f:
