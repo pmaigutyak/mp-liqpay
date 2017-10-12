@@ -5,7 +5,7 @@ import json
 
 from urlparse import urljoin
 
-from liqpay.settings import LIQPAY_PABLIC_KEY, LIQPAY_PRIVATE_KEY
+from liqpay.settings import LIQPAY_PUBLIC_KEY, LIQPAY_PRIVATE_KEY
 from liqpay.forms import ApiForm, CheckoutForm
 from liqpay.exceptions import LiqPayValidationError
 
@@ -85,4 +85,4 @@ class LiqPay(object):
         return base64.b64encode(hashlib.sha1(joined_fields).digest())
 
 
-liqpay = LiqPay(settings.LIQPAY_PABLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)

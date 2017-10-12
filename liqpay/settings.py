@@ -4,7 +4,7 @@ from django.conf import settings
 from liqpay.constants import CURRENCY_UAH, ACTION_PAY
 
 
-LIQPAY_PABLIC_KEY = getattr(settings, 'LIQPAY_PABLIC_KEY', '')
+LIQPAY_PUBLIC_KEY = getattr(settings, 'LIQPAY_PUBLIC_KEY', '')
 
 LIQPAY_PRIVATE_KEY = getattr(settings, 'LIQPAY_PRIVATE_KEY', '')
 
