@@ -3,7 +3,12 @@ import base64
 import hashlib
 import json
 
-from urlparse import urljoin
+try:
+    from urlparse import urljoin
+except ImportError:
+    # Python 3
+    from urllib.parse import urljoin
+
 
 from liqpay.settings import LIQPAY_PUBLIC_KEY, LIQPAY_PRIVATE_KEY
 from liqpay.forms import ApiForm, CheckoutForm
